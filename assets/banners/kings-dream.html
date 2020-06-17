@@ -1,0 +1,100 @@
+<html>
+<head>
+<style>
+  html {
+    overflow: hidden;
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+<script>
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+var TOTAL_POINTS = 4000;
+var TIME_SCALE = 0.00004;
+
+var params = {
+  a: {
+    value: -0.966918,
+    dir: 1,
+    min: -3,
+    max: 3
+  },
+  b: {
+    value: 2.879879,
+    dir: 1,
+    min: -3,
+    max: 3
+  },
+  c: {
+    value: 0.765145,
+    dir: 1,
+    min: -0.5,
+    max: 1.5
+  },
+  d: {
+    value: 0.744728,
+    dir: 1,
+    min: -3,
+    max: 3
+  }
+};
+
+function updateParam(param, dt) {
+  param.value += dt * param.dir;
+  
+  var range = param.max - param.min;
+  if(param.value > param.max) {
+    param.value = param.max;
+    param.dir = -param.dir;
+  }
+  else if(param.value < param.min) {
+    param.value = param.min;
+    param.dir = -param.dir;
+  }
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(34, 34, 34);
+  stroke("#008cba");
+  strokeWeight(1);
+  frameRate(20);
+}
+
+function draw() {
+  background(34, 34, 34, 100);
+  
+  dt = deltaTime * TIME_SCALE;
+
+  var x = 0.1;
+  var y = 0.1;
+  updateParam(params.a, dt * 0.8);
+  updateParam(params.b, dt * 0.9);
+  updateParam(params.c, dt);
+  updateParam(params.d, dt * 1.1);
+  var a = params.a.value;
+  var b = params.b.value;
+  var c = params.c.value;
+  var d = params.d.value;
+  for(var i = 0; i < TOTAL_POINTS; i++) {
+    var dx = Math.sin(y * b) + c * Math.sin(x * b);
+    var dy = Math.sin(x * a) + d * Math.sin(y * a);
+    
+    point(width * 0.5+ dx * 50, height * 0.5 + dy * 50);
+
+    x = dx;
+    y = dy;
+  }
+}
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

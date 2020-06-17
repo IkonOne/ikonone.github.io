@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+
+{% include head.html %}
+
+  <body class="d-flex flex-column vh-100">
+
+    <header>
+      {% include navbar.html %}
+    </header>
+
+    <main role="main" class="flex-fill">
+      {% if page.show_banner %}
+        {% include banner.html %}
+      {% endif %}
+      {{ content}}
+    </main>
+    
+    <footer>
+      {% include footer.html %}
+    </footer>
+
+  </div>
+
+  </body>
+</html>
