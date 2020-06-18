@@ -1,10 +1,10 @@
 - name: "About Me"
-  link: /about.html
+  link: #
 - name: Portfolio
-  link: /portfolio.html
+  link: #
 - name: "My Banners"
-  link: /banners.html
+  link: #
 - name: Experience
-  link: /experience.html
+  link: #
 - name: "Hire Me"
-  link: /hire.html
+  link: #
